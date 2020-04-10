@@ -1,0 +1,33 @@
+<div dir="rtl">
+<mat-toolbar color="primary" dir="rtl">
+    ثبت نام
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+
+<div *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
+</div>
+
+<form novalidate #signupForm="ngForm" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="نام کاربری" type="text" [(ngModel)]="user.username" name="username"  #username="ngModel" required>
+        <mat-error *ngIf="username.errors?.required">شناسه کاربری الزامی است</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="رمز عبور" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
+        <mat-error *ngIf="password.errors?.required">کلمه ی عبور الزامی است</mat-error>
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions class="flex-center">
+    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="signupForm.form.invalid">ثبت نام</button>
+    <button mat-button mat-dialog-close>انصراف</button>
+    <mat-checkbox [(ngModel)]="user.remember" name="remember">به یاد داشته باش</mat-checkbox>
+  </mat-dialog-actions>
+</form>
+</div>

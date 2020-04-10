@@ -1,0 +1,59 @@
+<mat-toolbar class="general-toolbar2">
+  <div class="image">
+    <img src="{{ baseURL + home_header.filename}}" height=100% width=100%>
+    <h1 class="h1">هوش برتر</h1>
+</div>
+</mat-toolbar>
+
+<!--<span class="text-alignments">هوش برتر</span>-->
+
+<div class="container footer" 
+    fxLayout="row" 
+    fxLayout.sm="column" 
+    fxLayout.xs="column" 
+    fxLayoutAlign.xs="start center" 
+    fxLayoutAlign.sm="start center"
+    fxLayoutAlign.gt-sm="center center" 
+    fxLayoutWrap 
+    fxLayoutGap="10px"
+    dir="rtl">
+
+  <div fxFlex="100%" fxFlex.gt-sm="50%">
+    <div fxLayout="row">
+      <div fxFlex="40" fxFlexOffset="20px" >
+        <h4>پیوند ها</h4>
+        <mat-list>
+          <mat-list-item><a mat-button routerLink="/home" routerLinkActive="active" style="color:white;">خانه</a></mat-list-item>
+          <mat-list-item><a mat-button routerLink="/users" routerLinkActive="active" style="color:white">درباره ما</a></mat-list-item>
+          <mat-list-item><a mat-button routerLink="/menu" routerLinkActive="active" style="color:white">استراتژی</a></mat-list-item>
+          <mat-list-item><a mat-button routerLink="/contactus" routerLinkActive="active" style="color:white">تماس با ما</a></mat-list-item>
+        </mat-list>
+      </div>
+      <div fxFlex="50">
+        <h4>نشانی ما</h4>
+        <address style="text-size: 80%">
+          ولنجک، دانشگاه شهید بهشتی<br> مرکز رشد فناوری<br> واحد 320<br>
+          <i class="fa fa-phone"></i>: 29903234 021<br>
+          <!-- <i class="fa fa-fax"></i>: <br> -->
+          <i class="fa fa-envelope"></i>:
+          <a href="mailto:hooshbartar.co@gmail.com">hooshbartar.co@gmail.com</a>
+        </address>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="100%" fxFlex.gt-sm="45%">
+    <div style="text-align:center">
+      <a mat-icon-button class="btn-google-plus" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a>
+      <a mat-icon-button class="btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
+      <a mat-icon-button class="btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
+      <a mat-icon-button class="btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
+      <a mat-icon-button class="btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>
+      <a mat-icon-button class="btn-mail" href="mailto:hooshbartar.co@gmail.com"><i class="fa fa-envelope-o fa-lg"></i></a>
+    </div>
+  </div>
+  <div fxFlex="100" fxFlexAlign="center center">
+    <div style="text-align:center">
+      <p>کلیه حقوق مادی و معنوی این سایت متعلق به استارتاپ هوش برتر میباشد</p>
+    </div>
+  </div>
+</div>
