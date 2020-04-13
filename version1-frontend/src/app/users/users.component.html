@@ -1,1 +1,67 @@
-<p>users works!</p>
+<div class="container"
+    fxLayout="row wrap"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap="10px" 
+    fxLayoutGap.xs="0">
+
+  <div fxFlex="100" dir="rtl">
+    <div>
+      <h3 *ngIf="">اطلاعات کاربر</h3>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex="40" *ngIf="user" [@visibility]="visibility" [@expand]>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>{{user.firstname | uppercase}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{ baseURL + default_user.filename}}" >
+      <mat-card-content>
+        <p>
+            {{user.lastname}} 
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="40" *ngIf="user" [@visibility]="visibility" [@expand]>
+    <mat-list>
+      <h3>مشخصات</h3>
+      <mat-list-item >
+        <h4 matLine> {{user.firstname}} </h4>
+        <p matLine> {{user.lastname</p>
+            <!--
+        <p matLine>
+          <span> -- {{comment.author}} {{comment.date | date }} </span>
+        </p>
+            -->
+
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div [hidden]="user || errMess">
+      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+</div>
+
+<!--
+        <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-slider min="1" max="5" step="1" thumbLabel tickInterval="1" name="rating" formControlName="rating"></mat-slider>
+        <mat-form-field class="full-width">
+          <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
+          <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+        </mat-form-field>
+      </p>
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+    </form>
+-->

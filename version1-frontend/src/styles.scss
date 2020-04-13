@@ -12,6 +12,10 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif; 
 }
 
+.container {
+  margin: 20px;
+  display:flex;
+}
 
 .text-alignments{
     margin: auto;
@@ -19,10 +23,7 @@ body {
 }
 
 
-.container {
-  margin: 20px;
-  display:flex;
-}
+
 
 $lt-gray: #ddd;
 $background-dark: rgb(45, 57, 168);

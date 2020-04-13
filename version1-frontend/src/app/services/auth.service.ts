@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
+import { User } from '../shared/user';
 import { baseURL } from '../shared/baseurl';
 import { ProcessHTTPMsgService } from './process-httpmsg-service.service';
 
@@ -18,7 +19,7 @@ interface AuthResponse {
 }
 
 interface UserResponse {
-  user: any;
+  user: User;
   status: string;
   success: boolean;
 }
@@ -38,12 +39,13 @@ export class AuthService {
   isAuthenticated: Boolean = false;
   username: Subject<string> = new Subject<string>();
   authToken: string = undefined;
+  user = new Subject<User>();
 
    constructor(private http: HttpClient,
      private processHTTPMsgService: ProcessHTTPMsgService) {
    }
 
-   checkUserExistence(user : any) : any {
+   checkUserExistence(user : User) : any {
     this.http.get<UserResponse>(baseURL + 'users/findUser')
     .subscribe(res => {
       if(res.success){
@@ -99,7 +101,8 @@ export class AuthService {
      this.isAuthenticated = true;
      this.sendUsername(credentials.username);
      this.authToken = credentials.token;
-   }
+     this.user.next(credentials.user);
+    }
 
    destroyUserCredentials() {
      this.authToken = undefined;
@@ -108,13 +111,19 @@ export class AuthService {
      localStorage.removeItem(this.tokenKey);
    }
 
+   storeUser(username: any) {
+    console.log('storeUser ', username);
+    //localStorage.setItem(this.username, JSON.stringify(username));
+    //this.useCredentials(credentials);
+  }
+
 
    signUp(user: any): Observable<any> {
     if (this.checkUserExistence(user) === false) {
       return this.http.post<RegResponse>(baseURL + 'users/signup',
       {'username': user.username, 'password': user.password})
       .pipe( map(res => {
-          this.storeUserCredentials({username: user.username});
+          this.storeUser({username: user.username});
           return {'success': true, 'username': user.username };
       }),
        catchError(error => this.processHTTPMsgService.handleError(error)));
@@ -131,7 +140,7 @@ export class AuthService {
      return this.http.post<AuthResponse>(baseURL + 'users/login',
        {'username': user.username, 'password': user.password})
        .pipe( map(res => {
-           this.storeUserCredentials({username: user.username, token: res.token});
+           this.storeUserCredentials({username: user.username, token: res.token });
            return {'success': true, 'username': user.username };
        }),
         catchError(error => this.processHTTPMsgService.handleError(error)));
@@ -148,6 +157,10 @@ export class AuthService {
    getUsername(): Observable<string> {
      return this.username.asObservable();
    }
+
+   getUser(): Observable<User> {
+    return this.user.asObservable();
+  }
 
    getToken(): string {
      return this.authToken;

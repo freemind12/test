@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve" , 
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^9.0.3",
+    "@angular/animations": "^9.1.1",
     "@angular/cdk": "^9.2.0",
     "@angular/common": "~9.0.3",
     "@angular/compiler": "~9.0.3",
@@ -50,3 +50,4 @@
     "typescript": "~3.7.5"
   }
 }
+

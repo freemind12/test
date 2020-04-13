@@ -16,7 +16,7 @@ export class ImagesService {
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getImages(): Observable<Image[]> {
-    return this.http.get<Image[]>(baseURL + 'images/')
+    return this.http.get<Image[]>(baseURL + 'images')
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 

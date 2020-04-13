@@ -37,7 +37,7 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,
         });
     }));
 
-exports.verifyUser = passport.authenticate('jwt', {session: false})
+exports.verifyUser = passport.authenticate('jwt', {session: false});
     console.log("User verified!");
 
 exports.verifyAdmin = function(req, res, next) {

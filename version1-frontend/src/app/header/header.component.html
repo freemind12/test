@@ -1,5 +1,5 @@
 <mat-toolbar class= "general-toolbar">
-    <span><img src="{{ baseURL + logo_image.filename}}" height=30 width=41></span>
+    <span></span>
 
     <a *ngIf="!username" mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> ورود</a>
     <a mat-button *ngIf="!username" (click)="openSignupForm()"><span class="fa fa-user-plus fa-lg"></span> ثبت نام </a>
@@ -14,6 +14,7 @@
 
 
 <!--
+  <img src="{{ baseURL + logo_image.filename}}" height=30 width=41>
     <a *ngIf="username">{{username}}</a>
     <a mat-button routerLink="/aboutus" routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
     <a mat-button routerLink="/menu" routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Menu</a>

@@ -40,7 +40,6 @@ connect.then((db) => {
 }, (err) => { console.log(err); });
 
 var app = express();
-
 // Secure traffic only
 app.all('*', (req, res, next) => {
   if (req.secure) {
@@ -62,7 +61,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
 app.use(passport.initialize());
 
 app.use('/', index);
@@ -71,7 +69,7 @@ app.use('/users', usersRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/public/images',imagesRouter);
+app.use('/images',imagesRouter);
 app.use('/imageUpload',uploadRouter);
 
 

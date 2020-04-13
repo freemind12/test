@@ -22,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { baseURL } from './shared/baseurl';
 import { HttpClientModule } from '@angular/common/http';
 import { HighlightDirective } from './directives/highlight.directive';
-//import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AuthInterceptor, UnauthorizedInterceptor } from './services/auth.interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -35,6 +36,8 @@ import { ProcessHTTPMsgService } from './services/process-httpmsg-service.servic
 import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ImagesService } from './services/images.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 @NgModule({
@@ -71,8 +74,20 @@ import { FooterComponent } from './footer/footer.component';
     ],
   providers: [
     AuthService,
+    AuthGuardService,
     ProcessHTTPMsgService,
+    ImagesService,
     {provide: 'baseURL', useValue: baseURL},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true
+    }
 
   ],
   entryComponents: [

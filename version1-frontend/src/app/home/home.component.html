@@ -1,11 +1,15 @@
 <mat-toolbar class="general-toolbar2">
   <div class="image">
-    <img src="{{ baseURL + home_header.filename}}" height=100% width=100%>
+    <img *ngIf="home_header" src="{{ baseURL + home_header.filename }}" height=100% width=100%>
+
     <h1 class="h1">هوش برتر</h1>
 </div>
 </mat-toolbar>
 
-<!--<span class="text-alignments">هوش برتر</span>-->
+<!--
+  <span class="text-alignments">هوش برتر</span>
+    <img src="{{ baseURL + home_header.filename}}" height=100% width=100%>
+  -->
 
 <div class="container footer" 
     fxLayout="row" 
