@@ -20,7 +20,7 @@ import { visibility, flyInOut, expand } from '../animations/app.animation';
 })
 export class SignupComponent implements OnInit {
 
-  user = {username: '', password: '', remember: false};
+  user = {username: '', password: '', firstname: '', lastname: '', remember: false};
   errMess: string;
 
   constructor(public dialogRef: MatDialogRef<SignupComponent>,

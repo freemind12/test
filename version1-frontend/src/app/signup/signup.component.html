@@ -22,6 +22,13 @@
         <input matInput placeholder="رمز عبور" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
         <mat-error *ngIf="password.errors?.required">کلمه ی عبور الزامی است</mat-error>
       </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="نام " type="text" [(ngModel)]="user.firstname" name="firstname" #name="ngModel">
+        <mat-error *ngIf="password.errors">Error </mat-error>
+      </mat-form-field>      <mat-form-field>
+        <input matInput placeholder="نام خانوادگی" type="text" [(ngModel)]="user.lastname" name="lastname" #password="ngModel">
+        <mat-error *ngIf="password.errors">Error</mat-error>
+      </mat-form-field>
     </p>
   </mat-dialog-content>
   <mat-dialog-actions class="flex-center">

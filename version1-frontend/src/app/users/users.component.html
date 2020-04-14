@@ -8,19 +8,19 @@
 
   <div fxFlex="100" dir="rtl">
     <div>
-      <h3 *ngIf="">اطلاعات کاربر</h3>
+      <h3 >اطلاعات کاربر</h3>
       <hr>
     </div>
   </div>
 
-  <div fxFlex="40" *ngIf="user" [@visibility]="visibility" [@expand]>
+  <div fxFlex="40" [@visibility]="visibility" [@expand]>
     <mat-card>
       <mat-card-header>
         <mat-card-title>
           <h3>{{user.firstname | uppercase}}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="{{ baseURL + default_user.filename}}" >
+      <img mat-card-image src="{{ baseURL + 'images/' + default_user.filename}}" >
       <mat-card-content>
         <p>
             {{user.lastname}} 
@@ -29,7 +29,7 @@
     </mat-card>
   </div>
 
-  <div fxFlex="40" *ngIf="user" [@visibility]="visibility" [@expand]>
+  <div fxFlex="40" *ngIf="" [@visibility]="visibility" [@expand]>
     <mat-list>
       <h3>مشخصات</h3>
       <mat-list-item >
@@ -44,9 +44,7 @@
       </mat-list-item>
     </mat-list>
   </div>
-  <div [hidden]="user || errMess">
-      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-  </div>
+
   <div *ngIf="errMess">
     <h2>Error</h2>
     <h4>{{errMess}}</h4>
@@ -64,4 +62,8 @@
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
     </form>
+
+      <div [hidden]="  errMess">
+      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
 -->

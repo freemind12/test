@@ -35,7 +35,8 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
 
     this.authService.getUser()
-    .subscribe(user => this.user = user
+    .subscribe(user => {this.user = user;
+      console.log('the user issssssssssss: ' , this.user);}
     ,errmess => this.errMess = <any>errmess);
 
     this.imageService.getImages()

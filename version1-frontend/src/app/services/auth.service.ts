@@ -37,9 +37,11 @@ export class AuthService {
 
   tokenKey = 'JWT';
   isAuthenticated: Boolean = false;
+  user: Subject<User> = new Subject<User>();
   username: Subject<string> = new Subject<string>();
   authToken: string = undefined;
-  user = new Subject<User>();
+  //  user = new Subject<User>();
+
 
    constructor(private http: HttpClient,
      private processHTTPMsgService: ProcessHTTPMsgService) {
@@ -72,6 +74,9 @@ export class AuthService {
      });
    }
 
+   sendUser(new_user: User) {
+    this.user.next(new_user);
+  }
    sendUsername(name: string) {
      this.username.next(name);
    }
@@ -93,6 +98,9 @@ export class AuthService {
 
    storeUserCredentials(credentials: any) {
      console.log('storeUserCredentials ', credentials);
+     console.log('////////////////// ');
+
+     //localStorage.setItem(this.user, JSON.stringify(this.user));
      localStorage.setItem(this.tokenKey, JSON.stringify(credentials));
      this.useCredentials(credentials);
    }
@@ -100,8 +108,9 @@ export class AuthService {
    useCredentials(credentials: any) {
      this.isAuthenticated = true;
      this.sendUsername(credentials.username);
+     this.sendUser(credentials.user);
      this.authToken = credentials.token;
-     this.user.next(credentials.user);
+     //this.user.next(credentials.user);
     }
 
    destroyUserCredentials() {
@@ -121,7 +130,7 @@ export class AuthService {
    signUp(user: any): Observable<any> {
     if (this.checkUserExistence(user) === false) {
       return this.http.post<RegResponse>(baseURL + 'users/signup',
-      {'username': user.username, 'password': user.password})
+      {'username': user.username, 'password': user.password, 'firstname' : user.firstname, 'lastname': user.lastname})
       .pipe( map(res => {
           this.storeUser({username: user.username});
           return {'success': true, 'username': user.username };
@@ -130,7 +139,8 @@ export class AuthService {
 
     }
     else{
-      console.log('This user already exists!')
+      console.log('This user already exists!');
+      return ;
     }
 
   }
